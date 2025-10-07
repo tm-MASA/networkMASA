@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Artículos — Masa</title>
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <div class="container" style="padding:40px 20px;">
+      <a href="../index.html">← Volver</a>
+      <h1>Artículos</h1>
+      <div id="articles-list"></div>
+      <div id="pagination"></div>
+    </div>
+    <script>
+      async function load(){
+        const res = await fetch('data.json');
+        const items = await res.json();
+        const perPage = 2;
+        let page = 1;
+        function render(){
+          const list = document.getElementById('articles-list');
+          list.innerHTML = '';
+          const start = (page-1)*perPage;
+          const pageItems = items.slice(start,start+perPage);
+          pageItems.forEach(it=>{
+            const el = document.createElement('div');
+            el.className='article-card';
+            el.innerHTML = `<a href='${it.slug}' class='article-link'><img src='${it.image}' style='width:100%;height:140px;object-fit:cover;border-radius:4px'><h4>${it.title}</h4></a><p>${it.summary}</p>`;
+            list.appendChild(el);
+          });
+          const pag = document.getElementById('pagination');
+          pag.innerHTML = '';
+          const total = Math.ceil(items.length / perPage);
+          for(let i=1;i<=total;i++){
+            const b = document.createElement('button');
+            b.innerText = i; if(i===page) b.disabled=true;
+            b.addEventListener('click', ()=>{ page=i; render(); });
+            pag.appendChild(b);
+          }
+        }
+        render();
+      }
+      load();
+    </script>
+  </body>
+</html>

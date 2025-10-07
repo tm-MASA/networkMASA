@@ -69,3 +69,26 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 });
+
+// Back button helper: if current location is site root under user.github.io, ensure back links go to repo root
+document.addEventListener('DOMContentLoaded', function(){
+  // Find back links in article pages
+  const backLinks = document.querySelectorAll('.breadcrumb a[href="../index.html"], a[href="../index.html"]');
+  if(!backLinks.length) return;
+  backLinks.forEach(a=>{
+    a.addEventListener('click', function(e){
+      // If we are on GitHub Pages with a path that includes the repo name, navigate to ../index.html normally
+      // Otherwise, compute a safe URL: window.location.origin + '/networkMASA/'
+      const origin = window.location.origin;
+      // If origin is github pages root, and path root is not the repo root, redirect to the repo root
+      if(origin.includes('github.io')){
+        // try to detect repo name from meta or from known hostname
+        const repoBase = '/networkMASA/';
+        const target = origin + repoBase;
+        e.preventDefault();
+        window.location.href = target;
+      }
+      // otherwise allow normal behavior (relative link)
+    });
+  });
+});

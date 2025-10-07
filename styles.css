@@ -22,8 +22,14 @@ body{
 .nav-toggle{display:none;background:transparent;border:0;color:var(--fg);font-size:26px}
 
 .hero{padding:64px 0;text-align:left}
+.hero{padding:120px 0 80px;text-align:left;background-size:cover;background-position:center;position:relative}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.65));}
+.hero-inner{position:relative;z-index:2}
 .hero-inner h2{font-size:54px;margin:0 0 18px;line-height:1}
 .lead{font-size:20px;max-width:720px;line-height:1.6;opacity:0.95}
+
+.btn-primary{display:inline-block;background:var(--accent);color:var(--bg);padding:12px 20px;border-radius:6px;text-decoration:none;font-weight:600}
+.btn-primary:hover{filter:brightness(0.95)}
 
 .site-header{background:linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.05));backdrop-filter:blur(2px)}
 .main-nav a{padding:8px 10px;border-radius:4px}
@@ -79,4 +85,6 @@ body{
   .feature{flex-direction:column}
   .footer-inner{grid-template-columns:1fr}
   .articles-grid{grid-template-columns:1fr}
+  .hero{padding:80px 0 40px}
+  .hero-inner h2{font-size:34px}
 }

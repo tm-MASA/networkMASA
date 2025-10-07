@@ -61,6 +61,12 @@ body{
 .contact input,.contact textarea{width:100%;padding:10px;border-radius:6px;border:0;background:#111;color:var(--fg)}
 .contact .btn-primary{background:var(--accent);color:var(--bg)}
 
+/* Status messages for contact form */
+.contact-status{margin-top:8px;padding:10px;border-radius:6px;font-weight:600}
+.status-success{background:linear-gradient(90deg, rgba(34,197,94,0.12), rgba(34,197,94,0.06));color:#9ff7c1}
+.status-error{background:linear-gradient(90deg, rgba(239,68,68,0.08), rgba(239,68,68,0.04));color:#ff9b9b}
+.status-info{background:linear-gradient(90deg, rgba(59,130,246,0.06), rgba(59,130,246,0.03));color:#bcdcff}
+
 /* Carousel */
 .carousel{position:relative;overflow:hidden}
 .carousel-track{display:flex;transition:transform .4s ease}

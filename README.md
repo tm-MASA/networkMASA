@@ -35,6 +35,14 @@ Formularios (Formspree)
 -----------------------
 El formulario de contacto está configurado para enviar a Formspree. La URL actual configurada es `https://formspree.io/f/xnngbdge`. Las respuestas llegarán a la cuenta asociada a ese endpoint.
 
+Probar el formulario
+--------------------
+Para probar el envío desde tu máquina (sin usar la UI), puedes ejecutar una petición POST de prueba desde PowerShell:
+
+	Invoke-RestMethod -Uri 'https://formspree.io/f/xnngbdge' -Method Post -Body @{ name='Test'; email='test@example.com'; message='Mensaje de prueba' }
+
+Si todo funciona verás una respuesta exitosa (código 200/201) y el formulario en la UI mostrará el mensaje de confirmación.
+
 Información de la empresa
 ------------------------
-Hay una sección en `who.html` donde puedes añadir la información de tu empresa; se guarda localmente en el navegador. Para guardarla permanentemente, reemplaza el contenido por el tuyo en el archivo o implementa un backend.
+La página `who.html` contiene información estática sobre el proyecto y cómo colaboramos. Antes existía una pequeña interfaz para guardar información localmente, pero ahora la sección es estática. Para añadir información permanente, edita `who.html` directamente o implementa un backend.

@@ -47,25 +47,43 @@ document.addEventListener('DOMContentLoaded', function(){
   const form = document.getElementById('contact-form');
   const status = document.getElementById('contact-status');
   if(!form) return;
+  // Enhance UX: disable submit while sending, show clear status and classes
+  const submitBtn = form.querySelector('button[type="submit"]');
+  function setStatus(message, kind){
+    if(!status) return;
+    status.innerText = message;
+    status.classList.remove('status-success','status-error','status-info');
+    if(kind) status.classList.add('status-' + kind);
+  }
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
+    // disable submit
+    if(submitBtn) submitBtn.disabled = true;
+    setStatus('Enviando…', 'info');
+
     const data = new FormData(form);
     fetch(form.action, {
       method: 'POST',
       body: data,
       headers: { 'Accept': 'application/json' }
-    }).then(response=>{
+    }).then(async response=>{
       if(response.ok){
-        status.innerText = 'Mensaje enviado. Gracias!';
+        setStatus('Mensaje enviado. ¡Gracias por contactarnos!', 'success');
         form.reset();
       } else {
-        response.json().then(err=>{
-          status.innerText = 'Error al enviar. Por favor intenta de nuevo.';
-        }).catch(()=> status.innerText = 'Error al enviar.');
+        // try to get JSON error details from Formspree
+        try{
+          const payload = await response.json();
+          console.error('Formspree error response:', payload);
+        }catch(e){ /* ignore */ }
+        setStatus('No fue posible enviar el mensaje. Por favor intenta de nuevo.', 'error');
       }
-    }).catch(()=>{
-      status.innerText = 'Error de red. Intenta más tarde.';
+    }).catch(err=>{
+      console.error('Network error sending contact form', err);
+      setStatus('Error de red. Intenta más tarde.', 'error');
+    }).finally(()=>{
+      if(submitBtn) submitBtn.disabled = false;
     });
   });
 });
@@ -95,21 +113,5 @@ document.addEventListener('DOMContentLoaded', function(){
 
 // Company info save/load for who.html
 document.addEventListener('DOMContentLoaded', function(){
-  const btn = document.getElementById('save-company');
-  if(!btn) return;
-  const name = document.getElementById('company-name');
-  const desc = document.getElementById('company-desc');
-  const site = document.getElementById('company-site');
-  const status = document.getElementById('company-status');
-
-  // Load
-  const saved = localStorage.getItem('masa_company');
-  if(saved) try{ const o = JSON.parse(saved); name.value=o.name||''; desc.value=o.desc||''; site.value=o.site||'' }catch(e){}
-
-  btn.addEventListener('click', ()=>{
-    const o = { name: name.value, desc: desc.value, site: site.value };
-    localStorage.setItem('masa_company', JSON.stringify(o));
-    status.innerText = 'Guardado localmente.';
-    setTimeout(()=> status.innerText = '',3000);
-  });
+  // No longer storing company info in-page. Section replaced with static content.
 });

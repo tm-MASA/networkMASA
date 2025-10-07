@@ -59,7 +59,7 @@
         <h2 class="section-title">Contacto</h2>
         <p>¿Tienes sugerencias o quieres colaborar? Envíanos un mensaje.</p>
         <!-- Formspree demo action; replace with your own form endpoint if needed -->
-  <form id="contact-form" action="https://formspree.io/f/xnngbdge" method="POST">
+  <form id="contact-form" action="https://formspree.io/f/xnngbdge" method="POST" aria-describedby="contact-status" novalidate>
           <label>
             Nombre<br>
             <input type="text" name="name" required>
@@ -73,7 +73,7 @@
             <textarea name="message" rows="5" required></textarea>
           </label>
           <p><button class="btn-primary" type="submit">Enviar</button></p>
-          <p id="contact-status" aria-live="polite"></p>
+          <p id="contact-status" aria-live="polite" role="status" class="contact-status"></p>
         </form>
       </section>
 

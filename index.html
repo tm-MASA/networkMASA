@@ -11,11 +11,18 @@
   <meta property="og:title" content="Masa — Capa de Ozono">
   <meta property="og:description" content="Protege la capa de ozono: cuidados, prevenciones y acciones globales.">
   <meta property="og:image" content="https://raw.githubusercontent.com/tm-MASA/networkMASA/main/assets/ozone1.jpg">
+  <meta property="og:site_name" content="Masa">
+  <meta property="og:locale" content="es_MX">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Masa — Capa de Ozono">
   <meta name="twitter:description" content="Protege la capa de ozono: cuidados, prevenciones y acciones globales.">
   <meta name="twitter:image" content="https://raw.githubusercontent.com/tm-MASA/networkMASA/main/assets/ozone1.jpg">
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="manifest" href="assets/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -44,6 +51,29 @@
             <p><a class="btn-primary" href="#ozono">Aprende más</a></p>
           </div>
         </div>
+      </section>
+
+      <!-- Contact form -->
+      <section class="contact container" id="contact">
+        <h2 class="section-title">Contacto</h2>
+        <p>¿Tienes sugerencias o quieres colaborar? Envíanos un mensaje.</p>
+        <!-- Formspree demo action; replace with your own form endpoint if needed -->
+        <form id="contact-form" action="https://formspree.io/f/mdoavqyw" method="POST">
+          <label>
+            Nombre<br>
+            <input type="text" name="name" required>
+          </label>
+          <label>
+            Correo<br>
+            <input type="email" name="email" required>
+          </label>
+          <label>
+            Mensaje<br>
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+          <p><button class="btn-primary" type="submit">Enviar</button></p>
+          <p id="contact-status" aria-live="polite"></p>
+        </form>
       </section>
 
       <section class="content container" id="ozono">
@@ -83,18 +113,24 @@
         <h2 class="section-title">Artículos destacados</h2>
         <div class="articles-grid">
           <article class="article-card">
-            <img src="assets/article1.svg" alt="Artículo 1">
-            <h4>Por qué la capa de ozono importa</h4>
+            <a class="article-link" href="https://es.wikipedia.org/wiki/Capa_de_ozono" target="_blank" rel="noopener noreferrer">
+              <img src="assets/article1.svg" alt="Artículo 1">
+              <h4>Por qué la capa de ozono importa</h4>
+            </a>
             <p>Explicación breve sobre la función y la importancia para la vida en la Tierra.</p>
           </article>
           <article class="article-card">
-            <img src="assets/article2.svg" alt="Artículo 2">
-            <h4>Cómo prevenir su agotamiento</h4>
+            <a class="article-link" href="https://www.who.int/es/news-room/fact-sheets/detail/ultraviolet-(uv)-radiation" target="_blank" rel="noopener noreferrer">
+              <img src="assets/article2.svg" alt="Artículo 2">
+              <h4>Cómo prevenir su agotamiento</h4>
+            </a>
             <p>Medidas concretas a nivel personal y comunitario.</p>
           </article>
           <article class="article-card">
-            <img src="assets/article3.svg" alt="Artículo 3">
-            <h4>Protocolo de Montreal</h4>
+            <a class="article-link" href="https://es.wikipedia.org/wiki/Protocolo_de_Montreal" target="_blank" rel="noopener noreferrer">
+              <img src="assets/article3.svg" alt="Artículo 3">
+              <h4>Protocolo de Montreal</h4>
+            </a>
             <p>Resultados y lecciones del acuerdo internacional.</p>
           </article>
         </div>

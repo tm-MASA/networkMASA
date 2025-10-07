@@ -41,3 +41,31 @@ document.addEventListener('DOMContentLoaded', function(){
   prevBtn && prevBtn.addEventListener('click', ()=>{ idx = (idx - 1 + items.length) % items.length; update(); });
   nextBtn && nextBtn.addEventListener('click', ()=>{ idx = (idx + 1) % items.length; update(); });
 });
+
+// Contact form handling (Formspree)
+document.addEventListener('DOMContentLoaded', function(){
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('contact-status');
+  if(!form) return;
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const data = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response=>{
+      if(response.ok){
+        status.innerText = 'Mensaje enviado. Gracias!';
+        form.reset();
+      } else {
+        response.json().then(err=>{
+          status.innerText = 'Error al enviar. Por favor intenta de nuevo.';
+        }).catch(()=> status.innerText = 'Error al enviar.');
+      }
+    }).catch(()=>{
+      status.innerText = 'Error de red. Intenta más tarde.';
+    });
+  });
+});

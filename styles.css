@@ -53,6 +53,14 @@ body{
 .article-card img{width:100%;height:140px;object-fit:cover;border-radius:4px}
 .article-card h4{margin:8px 0;color:var(--fg)}
 
+.article-link{color:inherit;text-decoration:none}
+.article-link h4{color:var(--accent)}
+
+/* Contact form */
+.contact label{display:block;margin-bottom:12px}
+.contact input,.contact textarea{width:100%;padding:10px;border-radius:6px;border:0;background:#111;color:var(--fg)}
+.contact .btn-primary{background:var(--accent);color:var(--bg)}
+
 /* Carousel */
 .carousel{position:relative;overflow:hidden}
 .carousel-track{display:flex;transition:transform .4s ease}

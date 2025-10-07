@@ -92,3 +92,24 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 });
+
+// Company info save/load for who.html
+document.addEventListener('DOMContentLoaded', function(){
+  const btn = document.getElementById('save-company');
+  if(!btn) return;
+  const name = document.getElementById('company-name');
+  const desc = document.getElementById('company-desc');
+  const site = document.getElementById('company-site');
+  const status = document.getElementById('company-status');
+
+  // Load
+  const saved = localStorage.getItem('masa_company');
+  if(saved) try{ const o = JSON.parse(saved); name.value=o.name||''; desc.value=o.desc||''; site.value=o.site||'' }catch(e){}
+
+  btn.addEventListener('click', ()=>{
+    const o = { name: name.value, desc: desc.value, site: site.value };
+    localStorage.setItem('masa_company', JSON.stringify(o));
+    status.innerText = 'Guardado localmente.';
+    setTimeout(()=> status.innerText = '',3000);
+  });
+});

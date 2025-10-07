@@ -30,3 +30,11 @@ Las imágenes usadas en este proyecto son ejemplos descargados desde Unsplash (u
 Sitemap
 -------
 Se añadió un `sitemap.xml` en la raíz para ayudar a indexar las páginas del sitio.
+
+Formularios (Formspree)
+-----------------------
+El formulario de contacto está configurado para enviar a Formspree. La URL actual configurada es `https://formspree.io/f/xnngbdge`. Las respuestas llegarán a la cuenta asociada a ese endpoint.
+
+Información de la empresa
+------------------------
+Hay una sección en `who.html` donde puedes añadir la información de tu empresa; se guarda localmente en el navegador. Para guardarla permanentemente, reemplaza el contenido por el tuyo en el archivo o implementa un backend.

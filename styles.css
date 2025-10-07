@@ -83,6 +83,15 @@ body{
 .btn-primary{transition:transform .12s ease, filter .12s ease, opacity .12s ease}
 .btn-primary:active:not([disabled]){transform:translateY(1px)}
 
+/* Icon markup container inside status */
+.contact-status .status-icon{width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 18px}
+.contact-status .status-text{display:inline-block}
+
+/* spinner */
+.spinner{width:18px;height:18px;border-radius:50%;display:inline-block;box-sizing:border-box;position:relative}
+.spinner:after{content:'';box-sizing:border-box;position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,0.18);border-top-color:var(--fg);animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
 /* Carousel */
 .carousel{position:relative;overflow:hidden}
 .carousel-track{display:flex;transition:transform .4s ease}

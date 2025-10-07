@@ -51,10 +51,30 @@ document.addEventListener('DOMContentLoaded', function(){
   const submitBtn = form.querySelector('button[type="submit"]');
   function setStatus(message, kind){
     if(!status) return;
-    // Update text and classes
-    status.innerText = message;
+    // Build icon + text HTML
+    let iconHTML = '';
+    if(kind === 'info'){
+      // spinner
+      iconHTML = '<span class="status-icon" aria-hidden="true"><span class="spinner"></span></span>';
+    } else if(kind === 'success'){
+      iconHTML = '<span class="status-icon" aria-hidden="true">' +
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+        '<path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '</svg></span>';
+    } else if(kind === 'error'){
+      iconHTML = '<span class="status-icon" aria-hidden="true">' +
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+        '<path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '</svg></span>';
+    }
+
+    // Set markup (icon + text). Use status-text for the message to allow styling.
+    status.innerHTML = iconHTML + '<span class="status-text">' + message + '</span>';
+
+    // Update classes
     status.classList.remove('status-success','status-error','status-info');
     if(kind) status.classList.add('status-' + kind);
+
     // trigger pop animation by reflowing the class
     status.classList.remove('status-pop');
     // force reflow

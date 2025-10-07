@@ -77,7 +77,23 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // trigger pop animation by reflowing the class
     status.classList.remove('status-pop');
-    // force reflow
+    // If there are SVG paths with class 'draw', prepare their stroke lengths and trigger draw animation
+    const paths = status.querySelectorAll('svg path.draw');
+    paths.forEach(p=>{
+      try{
+        const len = p.getTotalLength();
+        p.style.strokeDasharray = len;
+        p.style.strokeDashoffset = len;
+        // remove animate class if present
+        p.classList.remove('draw-animate');
+        // force reflow before adding animate class
+        // eslint-disable-next-line no-unused-expressions
+        void p.getBoundingClientRect();
+        p.classList.add('draw-animate');
+      }catch(e){ /* ignore */ }
+    });
+
+    // force reflow for container pop
     // eslint-disable-next-line no-unused-expressions
     void status.offsetWidth;
     status.classList.add('status-pop');
@@ -92,8 +108,10 @@ document.addEventListener('DOMContentLoaded', function(){
     const start = Date.now();
     setStatus('Enviando…', 'info');
 
-    const data = new FormData(form);
+  const data = new FormData(form);
     const isReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Telemetry for debugging: measure time of the request
+  console.time('contact-form-submit');
 
     fetch(form.action, {
       method: 'POST',
@@ -130,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function(){
         finishErr();
       }
     }).finally(()=>{
+      console.timeEnd('contact-form-submit');
       if(submitBtn) submitBtn.disabled = false;
     });
   });

@@ -181,3 +181,28 @@ document.addEventListener('DOMContentLoaded', function(){
 document.addEventListener('DOMContentLoaded', function(){
   // No longer storing company info in-page. Section replaced with static content.
 });
+
+// Scrollspy: mark nav links active when their section is visible
+document.addEventListener('DOMContentLoaded', function(){
+  const nav = document.querySelector('.main-nav');
+  if(!nav) return;
+  const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
+  const sections = links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  if(!sections.length) return;
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const id = '#' + entry.target.id;
+      const link = nav.querySelector(`a[href="${id}"]`);
+      if(!link) return;
+      if(entry.isIntersecting && entry.intersectionRatio > 0.45){
+        // set active
+        links.forEach(l=>{ l.classList.remove('active'); l.removeAttribute('aria-current'); });
+        link.classList.add('active');
+        link.setAttribute('aria-current','true');
+      }
+    });
+  },{ threshold: [0.45] });
+
+  sections.forEach(s=>observer.observe(s));
+});

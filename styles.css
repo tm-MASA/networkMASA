@@ -67,6 +67,22 @@ body{
 .status-error{background:linear-gradient(90deg, rgba(239,68,68,0.08), rgba(239,68,68,0.04));color:#ff9b9b}
 .status-info{background:linear-gradient(90deg, rgba(59,130,246,0.06), rgba(59,130,246,0.03));color:#bcdcff}
 
+/* Icons via CSS pseudo-element and small animation */
+.contact-status{position:relative;display:flex;align-items:center;gap:10px}
+.contact-status::before{content:'';width:18px;height:18px;flex:0 0 18px;border-radius:50%;display:inline-block;transform:scale(1);transition:transform .18s ease}
+.status-success::before{background:radial-gradient(circle at 35% 35%, #d6ffea 0%, #00a86b 40%);box-shadow:0 0 8px rgba(34,197,94,0.25)}
+.status-error::before{background:radial-gradient(circle at 35% 35%, #ffd6d6 0%, #ff4d4d 40%);box-shadow:0 0 8px rgba(239,68,68,0.2)}
+.status-info::before{background:radial-gradient(circle at 35% 35%, #dbe9ff 0%, #2b6cb0 40%);box-shadow:0 0 8px rgba(59,130,246,0.18)}
+
+/* subtle pop animation when state changes */
+.status-pop{animation:pop .36s ease forwards}
+@keyframes pop{0%{transform:scale(.98);opacity:0}50%{transform:scale(1.06);opacity:1}100%{transform:scale(1);opacity:1}}
+
+/* disabled button visual */
+.btn-primary[disabled]{opacity:0.55;cursor:not-allowed;transform:translateY(0);filter:grayscale(.08)}
+.btn-primary{transition:transform .12s ease, filter .12s ease, opacity .12s ease}
+.btn-primary:active:not([disabled]){transform:translateY(1px)}
+
 /* Carousel */
 .carousel{position:relative;overflow:hidden}
 .carousel-track{display:flex;transition:transform .4s ease}

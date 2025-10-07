@@ -51,9 +51,16 @@ document.addEventListener('DOMContentLoaded', function(){
   const submitBtn = form.querySelector('button[type="submit"]');
   function setStatus(message, kind){
     if(!status) return;
+    // Update text and classes
     status.innerText = message;
     status.classList.remove('status-success','status-error','status-info');
     if(kind) status.classList.add('status-' + kind);
+    // trigger pop animation by reflowing the class
+    status.classList.remove('status-pop');
+    // force reflow
+    // eslint-disable-next-line no-unused-expressions
+    void status.offsetWidth;
+    status.classList.add('status-pop');
   }
 
   form.addEventListener('submit', function(e){

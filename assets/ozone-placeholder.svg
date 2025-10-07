@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <rect width="100%" height="100%" fill="#090909" />
+  <g fill="#d29bfd" font-family="Roboto, Arial, sans-serif">
+    <text x="50%" y="45%" font-size="36" text-anchor="middle">Imagen placeholder</text>
+    <text x="50%" y="55%" font-size="22" text-anchor="middle">Capa de ozono</text>
+  </g>
+</svg>

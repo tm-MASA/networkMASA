@@ -24,6 +24,18 @@ document.addEventListener('DOMContentLoaded', function(){
       if(nav.style.display === 'block') nav.style.display = '';
       else nav.style.display = 'block';
     });
+    // Close mobile menu when a nav link is clicked and set active state immediately
+    nav.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click', ()=>{
+        // if mobile (nav-toggle visible), hide nav
+        const isMobile = window.getComputedStyle(toggle).display !== 'none';
+        if(isMobile) nav.style.display = '';
+        // set active class for immediate feedback
+        nav.querySelectorAll('a').forEach(l=>{ l.classList.remove('active'); l.removeAttribute('aria-current'); });
+        a.classList.add('active');
+        a.setAttribute('aria-current','true');
+      });
+    });
   }
 
   // Simple carousel

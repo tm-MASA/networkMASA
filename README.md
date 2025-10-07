@@ -22,3 +22,11 @@ Este repositorio está listo para publicar con GitHub Pages. Si activas Pages en
 	https://tm-MASA.github.io/networkMASA/
 
 He configurado el repositorio y activado Pages automáticamente desde esta máquina. Si quieres usar un dominio personalizado, añade un archivo `CNAME` en la raíz con tu dominio.
+
+Créditos de imágenes
+-------------------
+Las imágenes usadas en este proyecto son ejemplos descargados desde Unsplash (uso permitido). Si deseas usar imágenes con créditos específicos, reemplázalas en la carpeta `assets/` y actualiza los pies de foto en `articles/`.
+
+Sitemap
+-------
+Se añadió un `sitemap.xml` en la raíz para ayudar a indexar las páginas del sitio.

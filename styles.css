@@ -9,7 +9,8 @@ html,body{height:100%}
 body{
   margin:0;
   font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  background:var(--bg);
+  /* Softer background to avoid a full-black canvas */
+  background: linear-gradient(180deg, #07070a 0%, #0d0c12 40%, #0f0e16 100%);
   color:var(--fg);
   -webkit-font-smoothing:antialiased;
 }
@@ -23,7 +24,7 @@ body{
 
 .hero{padding:64px 0;text-align:left}
 .hero{padding:120px 0 80px;text-align:left;background-size:cover;background-position:center;position:relative}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.65));}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(6,6,8,0.48), rgba(12,11,18,0.44));backdrop-filter: blur(2px);}
 .hero-inner{position:relative;z-index:2}
 .hero-inner h2{font-size:54px;margin:0 0 18px;line-height:1}
 .lead{font-size:20px;max-width:720px;line-height:1.6;opacity:0.95}
@@ -40,17 +41,17 @@ body{
 .card h3{margin-top:0;color:var(--accent)}
 
 .feature{display:flex;gap:24px;align-items:center;padding:40px 0}
-.feature-media img{width:100%;max-width:560px;border-radius:6px;display:block}
+.feature-media img{width:100%;max-width:560px;border-radius:10px;display:block;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
 .feature-text h3{color:var(--accent)}
 
-.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.45)}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:10px;box-shadow:0 10px 30px rgba(2,2,6,0.6);border:1px solid rgba(255,255,255,0.03)}
 
 
 /* Articles grid */
 .articles .section-title, .gallery .section-title{color:var(--accent);margin:24px 0}
 .articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .article-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:6px}
-.article-card img{width:100%;height:140px;object-fit:cover;border-radius:4px}
+.article-card img{width:100%;height:140px;object-fit:cover;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.45)}
 .article-card h4{margin:8px 0;color:var(--fg)}
 
 .article-link{color:inherit;text-decoration:none}
@@ -58,7 +59,7 @@ body{
 
 /* Contact form */
 .contact label{display:block;margin-bottom:12px}
-.contact input,.contact textarea{width:100%;padding:10px;border-radius:6px;border:0;background:#111;color:var(--fg)}
+.contact input,.contact textarea{width:100%;padding:12px;border-radius:8px;border:0;background:linear-gradient(180deg,#0b0b0e,#101018);color:var(--fg);box-shadow:inset 0 1px 0 rgba(255,255,255,0.02)}
 .contact .btn-primary{background:var(--accent);color:var(--bg)}
 
 /* Status messages for contact form */
@@ -113,12 +114,12 @@ body{
 .carousel-btn.prev{left:8px}
 .carousel-btn.next{right:8px}
 
-.site-footer{border-top:1px solid rgba(255,255,255,0.06);padding-top:28px}
-.footer-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:28px 0}
+.site-footer{border-top:1px solid rgba(255,255,255,0.04);padding-top:36px}
+.footer-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:36px 0;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005))}
 .footer-col h4{margin:0 0 8px;color:var(--accent)}
 .footer-col ul{list-style:none;padding:0;margin:0}
 .footer-col a{color:var(--fg);text-decoration:none}
-.footer-bar{background:rgba(255,255,255,0.03);padding:12px 0;text-align:center}
+.footer-bar{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(210,155,253,0.02));padding:14px 0;text-align:center}
 
 .editable{background:rgba(210,155,253,0.04);padding:12px;border-radius:4px}
 

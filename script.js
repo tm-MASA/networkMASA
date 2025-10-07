@@ -87,28 +87,48 @@ document.addEventListener('DOMContentLoaded', function(){
     e.preventDefault();
     // disable submit
     if(submitBtn) submitBtn.disabled = true;
+    // show spinner and ensure it's visible for at least minDuration
+    const minDuration = 400; // ms
+    const start = Date.now();
     setStatus('Enviando…', 'info');
 
     const data = new FormData(form);
+    const isReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     fetch(form.action, {
       method: 'POST',
       body: data,
       headers: { 'Accept': 'application/json' }
     }).then(async response=>{
-      if(response.ok){
-        setStatus('Mensaje enviado. ¡Gracias por contactarnos!', 'success');
-        form.reset();
+      const finish = () => {
+        if(response.ok){
+          setStatus('Mensaje enviado. ¡Gracias por contactarnos!', 'success');
+          form.reset();
+        } else {
+          setStatus('No fue posible enviar el mensaje. Por favor intenta de nuevo.', 'error');
+        }
+      };
+
+      if(isReduced){
+        // skip artificial delay for reduced motion
+        await (async()=>finish())();
       } else {
-        // try to get JSON error details from Formspree
-        try{
-          const payload = await response.json();
-          console.error('Formspree error response:', payload);
-        }catch(e){ /* ignore */ }
-        setStatus('No fue posible enviar el mensaje. Por favor intenta de nuevo.', 'error');
+        const elapsed = Date.now() - start;
+        const wait = Math.max(0, minDuration - elapsed);
+        await new Promise(r=>setTimeout(r, wait));
+        finish();
       }
-    }).catch(err=>{
+    }).catch(async err=>{
       console.error('Network error sending contact form', err);
-      setStatus('Error de red. Intenta más tarde.', 'error');
+      const finishErr = () => setStatus('Error de red. Intenta más tarde.', 'error');
+      if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        finishErr();
+      } else {
+        const elapsed = Date.now() - start;
+        const wait = Math.max(0, minDuration - elapsed);
+        await new Promise(r=>setTimeout(r, wait));
+        finishErr();
+      }
     }).finally(()=>{
       if(submitBtn) submitBtn.disabled = false;
     });
